@@ -12,6 +12,7 @@ import com.pine.panels.ToasterPanel;
 import com.pine.repository.SettingsRepository;
 import com.pine.service.ProjectService;
 import com.pine.service.ThemeService;
+import com.pine.tcc.TCCModule;
 import com.pine.tools.ToolsModule;
 import com.pine.view.View;
 import imgui.ImVec4;
@@ -41,7 +42,7 @@ public class EditorWindow extends AbstractWindow {
 
     @Override
     public void onInitializeInternal() {
-        engine.start(windowService.getDisplayW(), windowService.getDisplayH(), List.of(new ToolsModule()));
+        engine.start(windowService.getDisplayW(), windowService.getDisplayH(), List.of(new ToolsModule(), new TCCModule()));
         appendChild(new ToasterPanel());
         try {
             DockDTO dockCenter = new DockDTO(EditorDock.Viewport);
@@ -61,7 +62,7 @@ public class EditorWindow extends AbstractWindow {
         } catch (Exception e) {
             getLogger().error(e.getMessage(), e);
         }
-        projectService.loadProject();
+//        projectService.loadProject();
     }
 
     @Override

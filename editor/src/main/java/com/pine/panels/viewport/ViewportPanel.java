@@ -52,7 +52,7 @@ public class ViewportPanel extends AbstractDockPanel {
 
     @Override
     public void onInitialize() {
-        
+
         this.fbo = (FrameBufferObject) resourceService.addResource(new FBOCreationData(false, false).addSampler());
         appendChild(gizmoPanel = new GizmoConfigPanel(sizeVec));
         appendChild(gizmo = new GizmoPanel(position, sizeVec));
@@ -100,11 +100,13 @@ public class ViewportPanel extends AbstractDockPanel {
 
         if (context.camera.orbitalMode) {
             cameraService = cameraThirdPersonService;
-            if (io.getMouseWheel() != 0) {
-                cameraThirdPersonService.zoom(context.camera, io.getMouseWheel());
-            }
-            if (io.getMouseDown(ImGuiMouseButton.Left) && io.getMouseDown(ImGuiMouseButton.Right)) {
-                cameraThirdPersonService.changeCenter(context.camera);
+            if (ImGui.isWindowFocused()) {
+                if (io.getMouseWheel() != 0) {
+                    cameraThirdPersonService.zoom(context.camera, io.getMouseWheel());
+                }
+                if (io.getMouseDown(ImGuiMouseButton.Left) && io.getMouseDown(ImGuiMouseButton.Right)) {
+                    cameraThirdPersonService.changeCenter(context.camera);
+                }
             }
         } else {
             cameraService = cameraFirstPersonService;

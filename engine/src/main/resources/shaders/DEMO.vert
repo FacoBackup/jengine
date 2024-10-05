@@ -10,6 +10,8 @@ out float renderId;
 
 void main(){
     int index = (transformationIndex + gl_InstanceID);
-    renderId = float(index);
-    gl_Position = viewProjection * modelMatrices[index] * vec4(position, 1.0);
+    vec4 p = modelMatrices[index] * vec4(position, 1.0);
+    gl_Position = viewProjection * p;
+    renderId = p.y;
+
 }

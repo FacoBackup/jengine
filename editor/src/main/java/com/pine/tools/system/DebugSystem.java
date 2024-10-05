@@ -112,64 +112,6 @@ public class DebugSystem extends AbstractSystem {
         ssboService.bind(ssboRepository.lightMetadataSSBO);
         shaderService.bind(toolsResourceRepository.debugShader);
 
-        intBoolBuffer.put(0, renderingRepository.lightCount);
-        shaderService.bindUniform(lightCount, intBoolBuffer);
-
-        floatBuffer.put(0, clockRepository.elapsedTime);
-        shaderService.bindUniform(elapsedTime, floatBuffer);
-
-        intBoolBuffer.put(0, 0);
-        shaderService.bindUniform(isDecalPass, intBoolBuffer);
-
-        intBoolBuffer.put(0, settingsRepository.shadowAtlasQuantity);
-        shaderService.bindUniform(shadowMapsQuantity, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.shadowMapResolution);
-        shaderService.bindUniform(shadowMapResolution, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.ssrFalloff);
-        shaderService.bindUniform(SSRFalloff, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.ssrStepSize);
-        shaderService.bindUniform(stepSizeSSR, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.sssMaxDistance);
-        shaderService.bindUniform(maxSSSDistance, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.sssDepthThickness);
-        shaderService.bindUniform(SSSDepthThickness, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.sssEdgeFalloff);
-        shaderService.bindUniform(SSSEdgeAttenuation, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.sssDepthDelta);
-        shaderService.bindUniform(SSSDepthDelta, floatBuffer);
-
-        floatBuffer.put(0, settingsRepository.ssaoFalloffDistance);
-        shaderService.bindUniform(SSAOFalloff, floatBuffer);
-
-        intBoolBuffer.put(0, settingsRepository.ssrMaxSteps);
-        shaderService.bindUniform(maxStepsSSR, intBoolBuffer);
-
-        intBoolBuffer.put(0, settingsRepository.sssMaxSteps);
-        shaderService.bindUniform(maxStepsSSS, intBoolBuffer);
-
-        intBoolBuffer.put(0, 0);
-        shaderService.bindUniform(hasAmbientOcclusion, intBoolBuffer);
-
-        intBoolBuffer.put(0, editorSettings.debugShadingModel.getId());
-        shaderService.bindUniform(shadingModel, intBoolBuffer);
-
-        shaderService.bindUniform(brdfSampler, fboRepository.brdfSampler);
-
-        shaderService.bindUniform(SSAO, fboRepository.ssaoSampler);
-
-        shaderService.bindUniform(SSGI, fboRepository.ssgiSampler);
-
-        shaderService.bindUniform(previousFrame, fboRepository.tempColorWithDepthSampler);
-
-        shaderService.bindUniform(shadowAtlas, fboRepository.shadowsSampler);
-
         var requests = renderingRepository.requests;
         for (PrimitiveRenderRequest request : requests) {
             intBoolBuffer.put(0, request.transformation.renderIndex);

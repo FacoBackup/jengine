@@ -58,7 +58,8 @@ public class GizmoConfigPanel extends AbstractView {
         gizmoGrid();
 
         cameraMode();
-
+        ImGui.sameLine();
+        framerate();
         shadingMode();
 
         ImGui.sameLine();
